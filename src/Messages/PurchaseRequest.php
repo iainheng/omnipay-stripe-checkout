@@ -31,7 +31,7 @@ class PurchaseRequest extends AbstractCheckoutRequest
         $session = \Stripe\Checkout\Session::create(
             [
                 'client_reference_id' => $this->getTransactionId(),
-                'payment_method_types' => ['card'],
+//                'payment_method_types' => ['card'],
                 'payment_intent_data' => [
                     'description' => $this->getDescription(),
                 ],
@@ -57,8 +57,8 @@ class PurchaseRequest extends AbstractCheckoutRequest
                         )
                     )
                 ),
-                'success_url' => $this->getReturnUrl(),
-                'cancel_url' => $this->getCancelUrl(),
+                'success_url' => $this->getReturnUrl(). '&session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => $this->getCancelUrl(). '&session_id={CHECKOUT_SESSION_ID}',
             ]
         );
 

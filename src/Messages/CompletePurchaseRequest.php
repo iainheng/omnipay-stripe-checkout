@@ -35,7 +35,12 @@ class CompletePurchaseRequest extends AbstractCheckoutRequest
         // Just validate the parameters.
         $this->validate('apiKey');
 
-        return null; // The data we need (the session id) is already in the request object.
+        $requestParams = array_merge($this->httpRequest->request->all(), $this->httpRequest->query->all());
+
+        if (isset($requestParams['session_id']))
+            $this->sessionID = $requestParams['session_id'];
+
+        return $requestParams; // The data we need (the session id) is already in the request object.
     }
 
     public function sendData($data)
