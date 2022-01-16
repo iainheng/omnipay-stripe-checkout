@@ -63,7 +63,6 @@ class CompletePurchaseResponse extends AbstractResponse
                     $this->successful = false;
                     $this->message = 'Unknown error';
                     break;
-
             }
         } else {
             $this->successful = false; // Just make sure.

@@ -32,6 +32,7 @@ class PurchaseRequest extends AbstractCheckoutRequest
             [
                 'client_reference_id' => $this->getTransactionId(),
 //                'payment_method_types' => ['card'],
+                'metadata' => $this->getMetadata(),
                 'payment_intent_data' => [
                     'description' => $this->getDescription(),
                 ],
